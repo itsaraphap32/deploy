@@ -34,3 +34,16 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/build
           server-dir: public_html/
+
+          - name: Send email notification
+            uses: dawidd6/action-send-mail@v3
+            with:
+              server_address: smtp.yourmail.com
+              server_port: 587
+              username: ${{ secrets.EMAIL_USER }}
+              password: ${{ secrets.EMAIL_PASS }}
+              subject: "✅ Deploy Completed"
+              to: your@email.com
+              from: "GitHub Actions <your@email.com>"
+              body: "React site has been deployed successfully to Hostatom."
+
